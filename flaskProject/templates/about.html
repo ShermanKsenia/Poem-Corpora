@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Над проектом работали {% endblock %}</h1>
+    <div style="width: 60%; margin: auto">
+        {% for person, mail in persons.items() %}
+        <div style="padding: 10px; background-color: #EEE; margin: 20px">
+            <p style="font-size: 24px">{{ person }}</p>
+            <p style="font-size: 20px">{{ mail }}</p>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

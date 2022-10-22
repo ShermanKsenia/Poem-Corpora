@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="my-4">{% block title %} Welcome to Corpora {% endblock %}</h1>
+    <form class="form-inline justify-content-center" method="GET">
+        <div class="form-group col-5">
+            <input type="text" class="form-control col-12 my-3 mb-3" placeholder="Поиск" name="q" value="{{ request.args.get('q', '') }}">
+        </div>
+        <button type="submit" class="btn btn-primary my-3 mb-3">Искать</button>
+    </form>
+        {% for post in posts %}
+        <div style="padding: 10px; background-color: #EEE; margin: 20px">
+            <p style="font-size: 24px">{{ post['title'] }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
