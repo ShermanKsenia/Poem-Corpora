@@ -1,23 +1,32 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 class="my-4">{% block title %} Welcome to Corpora {% endblock %}</h1>
+    <h1 class="my-3">{% block title %} Корпус стихов русских поэтов 20 века {% endblock %}</h1>
     <form class="form-inline justify-content-center" method="GET">
         <div class="form-group col-5">
             <input type="text" class="form-control col-12 my-3 mb-3" placeholder="Поиск" name="q" value="{{ request.args.get('q', '') }}">
         </div>
         <button type="submit" class="btn btn-primary my-3 mb-3">Искать</button>
     </form>
-    {% if results != '' %}
+    {% if results == '' and error == '' %}
+        <p> Все материалы взяты с сайта
+            <a href="https://rustih.ru/stixi-sovetskix-poetov/">РуСтих</a>.
+        </p>
+    {% elif results == '' and error != '' %}
+        <div style="padding: 10px; margin: 20px">
+            <p style="font-size: 24px">{{ error }}</p>
+        </div>
+    {% elif results == [] %}
+        <p style="font-size: 24px">Таких примеров не нашлось.</p>
+    {% elif results != '' %}
         {% for tuple in results %}
             <div style="padding: 10px; background-color: #EEE; margin: 20px">
                 <p style="font-size: 19px">{{ tuple[0]+' "'+tuple[1]+'"' }}</p>
                 <p style="font-size: 24px">{{ tuple[2] }}</p>
             </div>
         {% endfor %}
-    {% else %}
-        <div style="padding: 10px; margin: 20px">
-            <p style="font-size: 24px">{{ error }}</p>
-        </div>
+            <p> Все материалы взяты с сайта
+                <a href="https://rustih.ru/stixi-sovetskix-poetov/">РуСтих</a>.
+            </p>
     {% endif %}
 {% endblock %}
