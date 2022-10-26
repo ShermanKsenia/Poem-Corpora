@@ -18,9 +18,23 @@ class Processing():
             'SPRO', 'V'
         )
 
-    def lemmatization(self, word):
-        w = self.morph.parse(word)
+    def standardize(self, tag):
+        new_tags = {'ADV': 'ADVB', 'ADVPRO': 'ADVB', 'ANUM': 'NUMR', 'APRO': 'ADJ', 'NUM': 'NUMR',
+                    'PART': 'PRCL', 'PR': 'PREP', 'S': 'NOUN', 'SPRO': 'NPRO', 'V': 'VERB'}
+        if new_tags[tag]:
+            new_tag = new_tags[tag]
+            return new_tag
+        return tag
+    
+    def lemmatization(self, word, tag=None):
+        w = morph.parse(word)
         l = w[0].normal_form
+        if tag:
+            tag = self.standardize(tag)
+            for ana in w:
+                if ana.tag.POS == tag:
+                    l = ana.normal_form
+                    break
         return (l)
 
     def only_one_word(self, phrase):
@@ -47,6 +61,7 @@ class Processing():
         else:
             to_search = {'token': None, 'lemma': None, 'pos': None}
             w = phrase[0].lower() #слово
+            tag = phrase[1]
             if w[0] == '"':
                 to_search['token'] = w[1:-1]
             else:
