@@ -72,11 +72,11 @@ class Processing():
                 if len(q1) == len(self.q):    # либо только токен, либо только тег
                     result = self.only_one_word(q1)
                     if result is not None:
-                        request = result
+                        request.append(result)
                 else:    # в запросе токен и тег
                     result = self.token_and_tag(q1)
                     if result is not None:
-                        request = result
+                        request.append(result)
             else:    # в запросе не одно слово
                 for element in self.q:
                     q1 = element.split('+')
@@ -211,13 +211,15 @@ class GetData():
         return result
 
     def get_sentences(self, ids):
-        ids = tuple(ids)
+        if len(ids) == 1:
+            ids = f'({ids[0]})'
+        else:
+            ids = tuple(ids)
         posts_query = f'''
             SELECT poet, title, sent FROM sentences
             JOIN poems_to_info ON sentences.id_sent== poems_to_info.id_sent
             JOIN info ON poems_to_info.id_info == info.id_info
-            WHERE sentences.id_sent in {ids}
-        '''
+            WHERE sentences.id_sent in {ids}'''
         self.cur.execute(posts_query)
         result = self.cur.fetchall()
         return result
