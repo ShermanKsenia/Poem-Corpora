@@ -1,23 +1,29 @@
 import sqlite3
-
+from processing import Processing, GetData
 from flask import Flask, render_template, request
 
 app = Flask(__name__)
-
-def get_db_connection():
-    conn = sqlite3.connect('poems_corpus.db')
-    conn.row_factory = sqlite3.Row
-    return conn
 
 @app.route('/')
 def index():
     q = request.args.get('q')
     if q:
-        conn = get_db_connection()
-        posts = conn.execute('SELECT poet, title FROM info WHERE poet = ?', (q,))
+        conn = sqlite3.connect('poems_corpus.db')
+        q = request.args.get('q')
+        my = Processing(q)
+        new_q = my.main_search()
+        if type(new_q) == str:
+            error = new_q
+            results = ''
+        else:
+            data = GetData(new_q, conn)
+            ids = data.sort_sentences()
+            results = data.get_sentences(ids)
+            error = ''
     else:
-        posts = ''
-    return render_template('index.html', posts=posts)
+        results = ''
+        error = ''
+    return render_template('index.html', error=error, results=results)
 
 @app.route('/rules')
 def rules():
