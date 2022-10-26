@@ -8,9 +8,16 @@
         </div>
         <button type="submit" class="btn btn-primary my-3 mb-3">Искать</button>
     </form>
-        {% for post in posts %}
-        <div style="padding: 10px; background-color: #EEE; margin: 20px">
-            <p style="font-size: 24px">{{ post['title'] }}</p>
+    {% if results != '' %}
+        {% for tuple in results %}
+            <div style="padding: 10px; background-color: #EEE; margin: 20px">
+                <p style="font-size: 19px">{{ tuple[0]+' "'+tuple[1]+'"' }}</p>
+                <p style="font-size: 24px">{{ tuple[2] }}</p>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div style="padding: 10px; margin: 20px">
+            <p style="font-size: 24px">{{ error }}</p>
         </div>
-    {% endfor %}
+    {% endif %}
 {% endblock %}
