@@ -18,7 +18,7 @@ class Processing():
             'SPRO', 'V', 'PRT', 'GRND'
         )
 
-    def standardize(tag):
+    def standardize(self, tag):
         new_tags = {'ADV': 'ADVB', 'ADVPRO': 'ADVB', 'ANUM': 'NUMR', 'APRO': 'ADJ', 'NUM': 'NUMR',
                     'PART': 'PRCL', 'PR': 'PREP', 'S': 'NOUN', 'SPRO': 'NPRO', 'V': 'VERB', 'A': 'ADJ'}
         if tag in new_tags:
@@ -30,16 +30,14 @@ class Processing():
         w = self.morph.parse(word)
         l = w[0].normal_form
         if tag:
-            tag = standardize(tag)
+            tag = self.standardize(tag)
             for ana in w:
                 if tag == 'ADJ' or tag == 'PRT':
                     if ana.tag.POS.startswith(tag):
                         l = ana.normal_form
-                        break
-                    else:
-                        if ana.tag.POS == tag:
-                            l = ana.normal_form
-                            break
+                else:
+                    if ana.tag.POS == tag:
+                        l = ana.normal_form
         return (l)
 
     def only_one_word(self, phrase):
