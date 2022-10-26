@@ -21,7 +21,7 @@ class Processing():
     def standardize(tag):
         new_tags = {'ADV': 'ADVB', 'ADVPRO': 'ADVB', 'ANUM': 'NUMR', 'APRO': 'ADJ', 'NUM': 'NUMR',
                     'PART': 'PRCL', 'PR': 'PREP', 'S': 'NOUN', 'SPRO': 'NPRO', 'V': 'VERB', 'A': 'ADJ'}
-        if new_tags[tag]:
+        if tag in new_tags:
             new_tag = new_tags[tag]
             return new_tag
         return tag
