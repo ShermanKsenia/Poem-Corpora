@@ -12,10 +12,10 @@ class Processing():
         self.q = q
         self.morph = MorphAnalyzer()
         self.tags = (
-            'NOUN', 'ADJ', 'COMP', 'VERB', 
-            'INFN', 'PRT', 'GRND', 'NUMR', 
-            'ADVB', 'NPRO', 'PRED', 'PREP', 
-            'CONJ', 'PRCL', 'INTJ'
+            'A', 'ADV', 'ADVPRO', 'ANUM',
+            'APRO', 'COM', 'CONJ', 'INTJ',
+            'NUM', 'PART', 'PR', 'S',
+            'SPRO', 'V'
         )
 
     def lemmatization(self, word):
@@ -101,11 +101,8 @@ class Processing():
                             break
                     else:    # в элементе запроса и токен, и тег
                         result = self.token_and_tag(q1)
-                        if isinstance(result, dict):
+                        if result is not None:
                             request.append(result)
-                        elif isinstance(result, str):
-                            error = result
-                            return error
                         else:
                             request = []
                             break
