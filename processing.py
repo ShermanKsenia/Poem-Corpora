@@ -101,8 +101,11 @@ class Processing():
                             break
                     else:    # в элементе запроса и токен, и тег
                         result = self.token_and_tag(q1)
-                        if result is not None:
+                        if isinstance(result, dict):
                             request.append(result)
+                        elif isinstance(result, str):
+                            error = result
+                            return error
                         else:
                             request = []
                             break
