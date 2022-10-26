@@ -1,13 +1,30 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{% block title %} Над проектом работали {% endblock %}</h1>
+    <h1 class="my-3">{% block title %} Над проектом работали {% endblock %}</h1>
     <div style="width: 60%; margin: auto">
         {% for person, mail in persons.items() %}
-        <div style="padding: 10px; background-color: #EEE; margin: 20px">
-            <p style="font-size: 24px">{{ person }}</p>
-            <p style="font-size: 20px">{{ mail }}</p>
-        </div>
+            {% if 'Ксения' in person %}
+                <div style="padding: 10px; background-color: #EEE; margin: 20px">
+                    <p style="font-size: 24px"> <img src="/static/images/ksusha.png" width="100" height="100"> {{ person }}</p>
+                    <p style="font-size: 20px">{{ mail }}</p>
+                </div>
+            {% elif 'Элина' in person %}
+                <div style="padding: 10px; background-color: #EEE; margin: 20px">
+                    <p style="font-size: 24px"> <img src="/static/images/elina.png" width="100" height="100"> {{ person }}</p>
+                    <p style="font-size: 20px">{{ mail }}</p>
+                </div>
+            {% elif 'Мария Островская' in person %}
+                <div style="padding: 10px; background-color: #EEE; margin: 20px">
+                    <p style="font-size: 24px"> <img src="/static/images/mashao.png" width="100" height="100"> {{ person }}</p>
+                    <p style="font-size: 20px">{{ mail }}</p>
+                </div>
+            {% else %}
+                <div style="padding: 10px; background-color: #EEE; margin: 20px">
+                    <p style="font-size: 24px"> <img src="/static/images/mashas.png" width="100" height="100"> {{ person }}</p>
+                    <p style="font-size: 20px">{{ mail }}</p>
+                </div>
+            {% endif %}
         {% endfor %}
     </div>
 {% endblock %}
