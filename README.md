@@ -17,4 +17,4 @@
 - папка flask_app содержит все необходимые файлы для создания сайта
 - папка only_notebooks содержит код, который использовался в процессе создания
 
-Презентацию проекта можно посмотреть [здесь](https://docs.google.com/presentation/d/1eXlpH3kBsDFEQT9E3tCa430ALvZ7CgMNIcbMeKQDx3s/edit#slide=id.p)
+Презентацию проекта можно посмотреть [здесь](https://docs.google.com/presentation/d/1eXlpH3kBsDFEQT9E3tCa430ALvZ7CgMNIcbMeKQDx3s/edit#slide=id.p).
