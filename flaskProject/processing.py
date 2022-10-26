@@ -15,12 +15,31 @@ class Processing():
             'A', 'ADV', 'ADVPRO', 'ANUM',
             'APRO', 'COM', 'CONJ', 'INTJ',
             'NUM', 'PART', 'PR', 'S',
-            'SPRO', 'V'
+            'SPRO', 'V', 'PRT', 'GRND'
         )
 
-    def lemmatization(self, word):
+    def standardize(tag):
+        new_tags = {'ADV': 'ADVB', 'ADVPRO': 'ADVB', 'ANUM': 'NUMR', 'APRO': 'ADJ', 'NUM': 'NUMR',
+                    'PART': 'PRCL', 'PR': 'PREP', 'S': 'NOUN', 'SPRO': 'NPRO', 'V': 'VERB', 'A': 'ADJ'}
+        if new_tags[tag]:
+            new_tag = new_tags[tag]
+            return new_tag
+        return tag
+    
+    def lemmatization(self, word, tag=None):
         w = self.morph.parse(word)
         l = w[0].normal_form
+        if tag:
+            tag = standardize(tag)
+            for ana in w:
+                if tag == 'ADJ' or tag == 'PRT':
+                    if ana.tag.POS.startswith(tag):
+                        l = ana.normal_form
+                        break
+                    else:
+                        if ana.tag.POS == tag:
+                            l = ana.normal_form
+                            break
         return (l)
 
     def only_one_word(self, phrase):
@@ -47,10 +66,11 @@ class Processing():
         else:
             to_search = {'token': None, 'lemma': None, 'pos': None}
             w = phrase[0].lower() #слово
+            tag = phrase[1] #тег
             if w[0] == '"':
                 to_search['token'] = w[1:-1]
             else:
-                l = self.lemmatization(w)
+                l = self.lemmatization(w, tag)
                 to_search['lemma'] = l
             p = phrase[1].upper()
             if p not in self.tags:
