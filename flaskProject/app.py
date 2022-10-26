@@ -6,9 +6,10 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+    path_to_db = 'poems_corpus.db'
     q = request.args.get('q')
     if q:
-        conn = sqlite3.connect('poems_corpus.db')
+        conn = sqlite3.connect(path_to_db)
         q = request.args.get('q')
         my = Processing(q)
         new_q = my.main_search()
