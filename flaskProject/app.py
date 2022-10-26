@@ -20,7 +20,6 @@ def index():
             ids = data.sort_sentences()
             results = data.get_sentences(ids)
             error = ''
-            print(results)
     else:
         results = ''
         error = ''
