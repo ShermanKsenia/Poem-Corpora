@@ -7,26 +7,28 @@
         <p style="font-size: 20px">1. Запрос может состоять максимум из трех токенов. Токены разделяйте пробелами. В выдаче токены будут находиться в том же порядке, что и в запросе.
             Для каждого токена вы можете использовать кавычки (“ ”), в таком случае в выдаче будут предложения с токенами именно в этой форме.
             </p>
+        <p style="font-size: 20px">2. Для каждого токена вы можете использовать кавычки (“ ”), в таком случае в выдаче будут предложения с токенами именно в этой форме.
+            </p>
         <div style="width: 70%; margin: auto">
             <p style="font-size: 20px"><span style="font-weight: bold">Запрос:</span> “солнцем”</p>
             <p style="font-size: 20px"><span style="font-weight: bold">Выдача:</span> “Влюбленные любовались <span style="font-style: italic;">солнцем</span> на закате”</p>
         </div>
-        <p style="font-size: 20px">2. Если же не заключать токен в кавычки, то в выдаче будут все токены с начальной формой как у искомого.
+        <p style="font-size: 20px">3. Если же не заключать токен в кавычки, то в выдаче будут все токены с начальной формой как у искомого.
             </p>
         <div style="width: 70%; margin: auto">
             <p style="font-size: 20px"><span style="font-weight: bold">Запрос:</span> солнцем </p>
             <p style="font-size: 20px"><span style="font-weight: bold">Выдача:</span> “Вода ярко блестела на <span style="font-style: italic;">солнце</span>”, <br> 
                 "Петя радовался <span style="font-style: italic;">солнцу</span> уже третий день”</p>
         </div>
-        <p style="font-size: 20px">3. Также для каждого токена вы можете указать необходимую часть речи. Для этого напишите токен и добавьте к нему частеречный тег через знак ‘+’ (все возможные теги указаны в таблице ниже) 
+        <p style="font-size: 20px">4. Также для каждого токена вы можете указать необходимую часть речи. Для этого напишите токен и добавьте к нему частеречный тег через знак ‘+’ (все возможные теги указаны в таблице ниже) 
             </p>
         <div style="width: 70%; margin: auto">
             <p style="font-size: 20px"><span style="font-weight: bold">Запрос:</span> знать+NOUN </p>
-            <p style="font-size: 20px"><span style="font-weight: bold">Выдача:</span> “В этом дворце чато появлялась <span style="font-style: italic;">знать</span>”, <br> 
+            <p style="font-size: 20px"><span style="font-weight: bold">Выдача:</span> “В этом дворце часто появлялась <span style="font-style: italic;">знать</span>”, <br> 
                 "У петербургской <span style="font-style: italic;">знати</span> это было любимым развлечением”</p>
             <p style="font-size: 20px"><span style="font-weight: bold">Запрос:</span> знать</p>
             <p style="font-size: 20px"><span style="font-weight: bold">Выдача:</span> “Он <span style="font-style: italic;">знал</span>, что будет прав”, <br> 
-                “В этом дворце чато появлялась <span style="font-style: italic;">знать</span>”            
+                “В этом дворце часто появлялась <span style="font-style: italic;">знать</span>”            
         </div>
         <h2>Частеречные теги</h2>
             <table id="tags">
