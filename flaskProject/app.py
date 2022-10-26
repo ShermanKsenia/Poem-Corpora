@@ -20,6 +20,7 @@ def index():
             ids = data.sort_sentences()
             results = data.get_sentences(ids)
             error = ''
+            print(results)
     else:
         results = ''
         error = ''
@@ -31,10 +32,10 @@ def rules():
 
 @app.route('/about')
 def about():
-    persons = {'Ксения Шерман - сбор копуса': 'почта',
-               'Элина Камаева - морфологическая разметка': 'почта',
-               'Мария Островская - разработка поиска': 'почта',
-               'Мария Сухарева - сборка сайта': 'почта'}
+    persons = {'Ксения Шерман - сбор копуса': 'ksenia.shermanv@gmail.com',
+               'Элина Камаева - морфологическая разметка': 'elinkamaeva@gmail.com',
+               'Мария Островская - разработка поиска': 'ostrovskaya.ms@mail.ru',
+               'Мария Сухарева - сборка сайта': 'maryleyas@gmail.com'}
     return render_template('about.html', persons=persons)
 
 if __name__ == '__main__':
