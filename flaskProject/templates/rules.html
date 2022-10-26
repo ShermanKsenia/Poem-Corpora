@@ -1,6 +1,115 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
-
+    <h1>{% block title %} Правила работы с корпусом {% endblock %}</h1>
+    <div style="width: 80%; margin: auto">
+        <p style="font-size: 24px">Для поиска в корпусе, пожалуйста. пользуйтесь правилами, описанными ниже.</p>
+        <p style="font-size: 20px">1. Запрос может состоять максимум из трех токенов. Токены разделяйте пробелами. В выдаче токены будут находиться в том же порядке, что и в запросе.
+            Для каждого токена вы можете использовать кавычки (“ ”), в таком случае в выдаче будут предложения с токенами именно в этой форме.
+            </p>
+        <div style="width: 70%; margin: auto">
+            <p style="font-size: 20px"><span style="font-weight: bold">Запрос:</span> “солнцем”</p>
+            <p style="font-size: 20px"><span style="font-weight: bold">Выдача:</span> “Влюбленные любовались <span style="font-style: italic;">солнцем</span> на закате”</p>
+        </div>
+        <p style="font-size: 20px">2. Если же не заключать токен в кавычки, то в выдаче будут все токены с начальной формой как у искомого.
+            </p>
+        <div style="width: 70%; margin: auto">
+            <p style="font-size: 20px"><span style="font-weight: bold">Запрос:</span> солнцем </p>
+            <p style="font-size: 20px"><span style="font-weight: bold">Выдача:</span> “Вода ярко блестела на <span style="font-style: italic;">солнце</span>”, <br> 
+                "Петя радовался <span style="font-style: italic;">солнцу</span> уже третий день”</p>
+        </div>
+        <p style="font-size: 20px">3. Также для каждого токена вы можете указать необходимую часть речи. Для этого напишите токен и добавьте к нему частеречный тег через знак ‘+’ (все возможные теги указаны в таблице ниже) 
+            </p>
+        <div style="width: 70%; margin: auto">
+            <p style="font-size: 20px"><span style="font-weight: bold">Запрос:</span> знать+NOUN </p>
+            <p style="font-size: 20px"><span style="font-weight: bold">Выдача:</span> “В этом дворце чато появлялась <span style="font-style: italic;">знать</span>”, <br> 
+                "У петербургской <span style="font-style: italic;">знати</span> это было любимым развлечением”</p>
+            <p style="font-size: 20px"><span style="font-weight: bold">Запрос:</span> знать</p>
+            <p style="font-size: 20px"><span style="font-weight: bold">Выдача:</span> “Он <span style="font-style: italic;">знал</span>, что будет прав”, <br> 
+                “В этом дворце чато появлялась <span style="font-style: italic;">знать</span>”            
+        </div>
+        <h2>Частеречные теги</h2>
+            <table id="tags">
+                <tr>
+                    <th>Тег</th>
+                    <th>Часть речи</th>
+                    <th>Пример</th>
+                </tr>
+                <tr>
+                    <td>NOUN</td>
+                    <td>Имя существительное</td>
+                    <td>солнце</td>
+                </tr>
+                <tr>
+                    <td>ADJ</td>
+                    <td>Имя прилагательное</td>
+                    <td>хороший, хорош</td>
+                </tr>
+                <tr>
+                    <td>COMP</td>
+                    <td>Компаратив</td>
+                    <td>лучше, выше</td>
+                </tr>
+                <tr>
+                    <td>VERB</td>
+                    <td>Глагол (личная форма)</td>
+                    <td>читал, смотришь</td>
+                </tr>
+                <tr>
+                    <td>INFN</td>
+                    <td>Глагол (инфинитив)</td>
+                    <td>читать, смотреть</td>
+                </tr>
+                <tr>
+                    <td>PRT</td>
+                    <td>Причастие</td>
+                    <td>прочитавший, прочитан</td>
+                </tr>
+                <tr>
+                    <td>GRND</td>
+                    <td>Деепричастие</td>
+                    <td>читая, посмотрев</td>
+                </tr>
+                <tr>
+                    <td>NUMR</td>
+                    <td>Числительное</td>
+                    <td>четыре</td>
+                </tr>
+                <tr>
+                    <td>ADVB</td>
+                    <td>Наречие</td>
+                    <td>хорошо</td>
+                </tr>
+                <tr>
+                    <td>NPRO</td>
+                    <td>Местоимение-существительное</td>
+                    <td>он</td>
+                </tr>
+                <tr>
+                    <td>PRED</td>
+                    <td>Предикатив</td>
+                    <td>некогда</td>
+                </tr>
+                <tr>
+                    <td>PREP</td>
+                    <td>Предлог</td>
+                    <td>из</td>
+                </tr>
+                <tr>
+                    <td>CONJ</td>
+                    <td>Союз</td>
+                    <td>и</td>
+                </tr>
+                <tr>
+                    <td>RPCL</td>
+                    <td>Частица</td>
+                    <td>бы</td>
+                </tr>
+                <tr>
+                    <td>INTJ</td>
+                    <td>Междометие</td>
+                    <td>ой</td>
+                </tr>
+            </table>
+    </div>
 {% endblock %}
