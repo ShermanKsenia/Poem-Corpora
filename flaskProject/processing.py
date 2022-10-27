@@ -252,7 +252,7 @@ class GetData():
         else:
             ids = tuple(ids)
         posts_query = f'''
-            SELECT poet, title, sent FROM sentences
+            SELECT poet, title, dirty_sent FROM sentences
             JOIN poems_to_info ON sentences.id_sent== poems_to_info.id_sent
             JOIN info ON poems_to_info.id_info == info.id_info
             WHERE sentences.id_sent in {ids}'''
