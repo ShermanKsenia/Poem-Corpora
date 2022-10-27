@@ -64,18 +64,17 @@ class Processing():
         else:
             to_search = {'token': None, 'lemma': None, 'pos': None}
             w = phrase[0].lower() #слово
-            tag = phrase[1] #тег
+            tag = phrase[1].upper() #тег
+            if tag not in self.tags:
+                error = 'Указан неправильный частеречный тег!'
+                return error
             if w[0] == '"':
                 to_search['token'] = w[1:-1]
             else:
                 l = self.lemmatization(w, tag)
                 to_search['lemma'] = l
-            p = phrase[1].upper()
-            if p not in self.tags:
-                error = 'Указан неправильный частеречный тег!'
-                return error
             else:
-                to_search['pos'] = p
+                to_search['pos'] = tag
                 return to_search
 
     def main_search(self):
